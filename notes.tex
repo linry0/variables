@@ -1,0 +1,591 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{parskip}
+
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\newcommand{\arcsinh}{\operatorname{arcsinh}}
+\newcommand{\arccsch}{\operatorname{arccsch}}
+\newcommand{\arccosh}{\operatorname{arccosh}}
+\newcommand{\arcsech}{\operatorname{arcsech}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+\newcommand{\arccoth}{\operatorname{arccoth}}
+
+\title{Calculus Exam Notes}
+\author{Ryan Lin}
+\date{2024-05-01}
+
+\begin{document}
+	\maketitle
+	
+	
+	\section{Vectors}
+	
+	
+	\section{Partial Differentiation}
+	
+	
+	\section{Multiple Integrals}
+	
+		%TODO method of lagrange multipliers
+		%irrotational <-> curl, incompressible <-> div
+	\section{Vector Integrals}
+	
+		\subsection{Notation (INCOMPLETE)}
+			$\int_{a}^{b} f(x) \,dx$ is the area between the line and the x-axis. \\
+			$\int_{C} f(x) \,dx$ is the area between the parameterised line and the x-axis. A line is created as $t$ increases and any area inbetween going left to right is positive while going right to left is negative. \\
+			\
+			$\int_{C} f(x,y) \,dx$ is the area between the parameterised line flattened to the x-axis and the x-axis.
+	
+		\subsection{Integrals in 2 Dimensions}
+			The integral of a function over a line can be the overall density*length=mass of a metal rod. \\
+			The integral of a vector field over a line can be the overall force acting on a particle moving in a path. \\
+			\\
+			\textbullet\ Derive formulae 1: the integrals of a function and vector field over a line in 2D. \\
+			\textbullet\ Extend formulae 1 to formulae 2: the integrals of a function and vector field over a graph in 2D. \\
+			\\
+			\begin{tabular}{| c | l | l |}
+			\hline
+			\multirow{2}{*}{2}	& Integral of a function over a graph		& $\int_{C} f(x,y) \,dr = \int_{t_{0}}^{t_{1}} f(x,y) \,\sqrt{1+\frac{dy}{dx}^2} \,dt$ \\
+								\cline{2-3}
+								& Integral of a vector field over a graph	& $\int_{C} \underline{F}(x,y) \cdot d\underline{r} = \int_{t_{0}}^{t_{1}} \underline{F}(x,y) \cdot (1, \frac{dy}{dx}) \,dt$ \\
+			\hline\hline
+			\multirow{2}{*}{1}	& Integral of a function over a line		& $\int_{C} f(x,y) \,dr = \int_{t_{0}}^{t_{1}} f(x,y) \,|r_{t}| \,dt$ \\
+								\cline{2-3}
+								& Integral of a vector field over a line	& $\int_{C} \underline{F}(x,y) \cdot d\underline{r} = \int_{t_{0}}^{t_{1}} \underline{F}(x,y) \cdot r_{t} \,dt$ \\
+			\hline
+			\end{tabular} \\
+			\\
+			where $x(t)$, $y(t)$ and $r=(x,y)$, $\underline{r}_{t} = \frac{d}{dt}(r)$. \\
+	
+		\subsection{Integrals in 3 Dimensions}
+			The integral of a function over a surface can be the overall temperature of a metal plate. \\
+			The integral of a vector field over a surface can be the overall velocity of particles moving through a membrane. \\
+			\\
+			\textbullet\ Extend formulae 1 to formulae 3: the integrals of a function and a vector field over a line in 3D. \\
+			\textbullet\ Extend formulae 3 to formulae 4: the integrals of a function and a vector field over a graph in 3D. \\
+			\textbullet\ Extend formulae 3 to formulae 5: the integrals of a function and a vector field over a surface in 3D. \\
+			\\
+			\begin{tabular}{| c | l | l |}
+			\hline
+			\multirow{2}{*}{5}	& Integral of a function over a line			& $\int_{C} f(x,y,z) \,dr = \int_{t_{0}}^{t_{1}} f(x,y,z) \,|\underline{r}_{t}| \,dt$ \\
+								\cline{2-3}
+								& Integral of a vector field over a line		& $\int_{C} \underline{F}(x,y,z) \cdot d\underline{r} = \int_{t_{0}}^{t_{1}} \underline{F}(x,y,z) \cdot \underline{r}_{t} \,dt$ \\
+			\hline\hline
+			\multirow{2}{*}{4}	& Integral of a function over a graph			& $\int\int_{S} f(x,y,z) \,dS = \int_{u_{0}}^{u_{1}}\int_{v_{0}}^{v_{1}} f(x,y,z) \,\sqrt{1+\frac{\partial z}{\partial x}^2+\frac{\partial z}{\partial y}^2} \,dv\,du$ \\
+								\cline{2-3}
+								& Integral of a vector field over a graph		& $\int\int_{S} \underline{F}(x,y,z) \cdot d\underline{S} = \int_{u_{0}}^{u_{1}}\int_{v_{0}}^{v_{1}} \underline{F}(x,y,z) \cdot (-\frac{\partial z}{\partial x},-\frac{\partial z}{\partial y},1) \,dv\,du$ \\
+			\hline\hline
+			\multirow{2}{*}{3}	& Integral of a function over any surface		& $\int\int_{S} f(x,y,z) \,dS = \int_{u_{0}}^{u_{1}}\int_{v_{0}}^{v_{1}} f(x,y,z) \,|\underline{r}_{u} \times \underline{r}_{v}| \,dv\,du$ \\
+								\cline{2-3}
+								& Integral of a vector field over any surface	& $\int\int_{S} \underline{F}(x,y,z) \cdot d\underline{S} = \int_{u_{0}}^{u_{1}}\int_{v_{0}}^{v_{1}} \underline{F}(x,y,z) \cdot (\underline{r}_{u} \times \underline{r}_{v}) \,dv\,du$ \\
+			\hline
+			\end{tabular} \\
+			\\
+			where $x(u,v)$, $y(u,v)$, $z(u,v)$ and $r=(x,y,z)$, $\underline{r}_{u} = \frac{\partial}{\partial u}(r)$, $\underline{r}_{v} = \frac{\partial}{\partial v}(r).$ \\
+	
+		\subsection{Further applications}
+			To get the integral of a function over a particular axis let all the other axes equal 0. \\
+			\\
+			To get the length of a 2D line: $\int_C |\underline{r}_{t}| \,ds$. \\
+			To get the length of a 2D graph: $\int_C \sqrt{1+\frac{\partial y}{\partial x}^2} \,ds$. \\
+			\\
+			To get the length of a 3D line: $\int_C |\underline{r}_{t}| \,ds$. \\
+			To get the length of a 3D graph: $\int_C \sqrt{1+\frac{\partial y}{\partial x}^2+\frac{\partial z}{\partial x}^2} \,ds$. \\
+			\\
+			To get the surface area of a 3D surface: $\int\int_D |\underline{r}_{u} \times \underline{r}_{v}| \,dA$. \\
+			To get the surface area of any 3D graph: $\int\int_D \sqrt{1+\frac{\partial z}{\partial x}^2+\frac{\partial z}{\partial y}^2} \,dA$. \\
+	
+	
+		\subsection{Further Theorems 1}
+	
+			\subsubsection{Notation}
+				$\int_C \underline{F} \,d\underline{r} = \int_C \underline{F} \cdot \frac{d\underline{r}}{dt} \,dt$ \\
+				$=\int_C (P,Q,R) \cdot (\frac{dx}{dt},\frac{dy}{dt},\frac{dz}{dt}) \,dt = \int_C (P \cdot \frac{dx}{dt} + Q \cdot \frac{dy}{dt} + R \cdot \frac{dz}{dt}) \,dt$ \\
+				$=\int_C P \cdot \frac{dx}{dt} \,dt + \int_C Q \cdot \frac{dy}{dt} \,dt + \int_C R \cdot \frac{dz}{dt} \,dt = \int_C P \,dx + Q \,dy + R \,dz$ \\
+	
+			\subsubsection{Green's Theorem}
+				Let $C$ be a line that bounds a graph $D$ in which a vector field $\underline{F}$ is defined. \\
+				Then $\int_{C} \underline{F} \cdot d\underline{r} = \int\int_{D} (\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}) \,dA$. \\
+	
+			\subsubsection{Convention}
+				The positive orientation of a simple closed line $C$ enclosing a simply-connected region in the $xy$-plane refers to a single anticlockwise circuit round $C$. \\
+				The positive orientation of a 2-sided surface $S$ refers to the side to which the unit normal vector field $\underline{\hat{n}}(x,y,z)$ points. \\
+				TODO find betweer definition for closed and open surfaces. \\
+	
+			\subsubsection{Conservative Vector Fields}
+				If the vector field $\underline{F}$ is the gradient vector of a function such that $\underline{F}=\underline{\nabla}f$ then $\underline{F}$ is conservative. \\
+				If the vector field $\underline{F}$ is conservative then $\underline{F}$ is line-independent: $\int_{C_1} \underline{F}(x,y,z) \,dr = \int_{C_2} \underline{F}(x,y,z) \,dr$ \\
+				If the vector field $\underline{F}$ is line independent then $\int_C \underline{F}(x,y,z) \,dr = f(r(t_1)) - f(r(t_0))$. \\
+				\\
+				Let $\underline{F}(x,y,z) = P(x,y,z)\underline{i} + Q(x,y,z)\underline{j}$. If $\frac{\partial P}{\partial x} = \frac{\partial Q}{\partial Y}$ then $\underline{F}$ is conservative. \\
+	
+	
+		\subsection{Further Theorems 2}
+	
+			\subsubsection{Curl and Divergence}
+				$\text{div}(\underline{F}) = \underline{\nabla} \cdot \underline{F} = (\frac{\partial}{\partial x} + \frac{\partial}{\partial y} + \frac{\partial}{\partial z}) \cdot (P\underline{i} + Q\underline{j} + R\underline{k}) = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}$ \\
+				$\text{curl}(\underline{F})= \underline{\nabla} \times \underline{F} = \begin{vmatrix} \underline{i} & \underline{j} & \underline{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R \end{vmatrix} = (\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})\underline{i}-(\frac{\partial R}{\partial x}-\frac{\partial P}{\partial z})\underline{j}-(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})\underline{k}$ \\
+				\\
+				$\underline{F}$ is conservative $\iff$ $\text{curl}(\underline{F}) = \underline{0}$ (defined in all $\mathbb{R}^3$). \\
+				$f(x,y,z)$ has continuous second order partial derivatives $\implies$ $\text{curl}(\underline{\nabla}f) = \underline{0}.$ \\
+				$\underline{F}(x,y,z)$ have continuous second order partial derivatives $\implies$ $\text{div}(\text{curl}(\underline{F})) = 0$. \\
+				\\
+				To prove $\underline{F}=(xz,xyz,-y^2) \neq \text{curl}(\underline{G})$, we assume the negation: \\
+				$\underline{F} = \text{curl}(\underline{G})$ (definition of curl requires second order partial derivatives)\\
+				$\implies$ $\underline{G}$ have continuous second order partial derivatives \\
+				$\implies$ $\text{div}(\text{curl}(\underline{G})) = 0$ \\
+				$\implies$ $\text{div}(\underline{F}) = 0$ which is a contradiction if you actually calculate $\text{div}(\underline{F})$. \\
+				Thus $\underline{F} \neq \text{curl}(\underline{G})$. \\
+	
+			\subsubsection{Orientation of Surfaces}
+				A surface is orientable if there exists a unit normal vector field that is defined, continuous, and normal to everywhere on the surface. The surface is oriented once assigned a unit normal vector field. \\
+				\\
+				Let $S$ be a 2-sided, open surface. Once oriented, $\underline{\hat{n}}$ points to the positive side of $S$ and $-\underline{\hat{n}}$ points to the negative side. \\
+				Let $S$ be a 2-sided, closed surface. $S$ is positively oriented if $\underline{\hat{n}}$ points outwards. $S$ is negatively oriented if $\underline{\hat{n}}$ points inwards. \\
+				\\
+				Unit normal vector field for a graph: $\underline{\hat{n}}(x,y,z) = \frac{-\frac{\partial g}{\partial x}\underline{i} - \frac{\partial g}{\partial y}\underline{j} + \underline{k}}{\sqrt{1 + \frac{\partial g}{\partial x}^2 + \frac{\partial g}{\partial y}^2}}$. \\
+				Unit normal vector field parameterised for any surface: $\underline{\hat{n}}(u,v) = \frac{\underline{r}_{u} \times \underline{r}_{v}}{|\underline{r}_u \times \underline{r}_v|}$. \\
+	
+			\subsubsection{Stokes' Theorem}
+				Let $C$ be a line that bounds a surface $S$ in which a vector field $\underline{F}$ is defined. \\
+				Then $\int_{C}{\underline{F} \cdot d\underline{r}} = \int\int_{S}{\text{curl}(\underline{F}) \cdot d\underline{S}}$ \\
+				\\
+				Let $T$ be a surface that is also bounded by $C$ and in which $\underline{F}$ is also defined. \\
+				Then $\int_{C}{\underline{F} \cdot d\underline{r}} = \int\int_{T}{\text{curl}(\underline{F}) \cdot d\underline{T}}$. \\
+				\\
+				Curl of a point in a vector field is the rotation/ spinning tendency of the field around that point. The direction tells the axis of rotation and the magnitude tells how strong it is. The double integral of the curl of a vector field over a surface captures all the curl into one number. If the vector field is continuous you can imagine, if you zoom into each point and its neighbour, their curls/ surrounding rotations cancel each other out. Draw it. Two circles rotating the same counterclockwise (well just very very similar orientation since continuous) the point they meet they go in opposite directions so cancel. The only place where the curl of a point doesn't cancel with its neighbour is at the boundary where it has no neighbour. So after all the cancellations of neighbouring rotations, what is left are the straight values of the vector field at every point on the boundary (every rotation other than that on the boundary (the tangent) is cancelled). That is the double integral of the curl of a vector field with respect to a surface is equal to the integral of the vector field itself with respect to the boundary line of the surface. \\
+	
+			\subsubsection{Divergence Theorem}
+				Let $S$ be a surface that bounds a region $E$ in which a vector field $\underline{F}$ is defined.\\
+				Then $\int\int_{S}{\underline{F} \cdot d\underline{S}} = \int\int\int_{E}{\text{div}\underline{F}}\,dV$. \\
+	
+			\subsection{TODO}
+				splitting of domain => splitting of integral maybe not in this section \\
+				parametric descriptions of lines and surfaces \\
+				tangent planes \\
+				stokes' theorem November 4 lecture 12 mins stokes theorem interpretation\\
+	
+	
+	\section{Differential Equations}
+	
+		\subsection{First Order}
+			
+			\subsubsection{Graphical Method}
+				Let $\dv{y}{x} = f(x,y)$. Plot its direction field by drawing short line segments of slope $f(x_0,y_0)$ at various $(x_0,y_0)$. \\
+
+			\subsubsection{Numerical Method}
+				Let $\dv{y}{x} = f(x,y)$ and $y(x_0) = y_0$. \\
+				\\
+				First get a series of points starting from $x_0$: \\
+				$x_0$, $x_1 = x_0 + h$, $x_2 = x_1 + h$, $x_3 = x_2 + h$, \ldots (where the step size is $h$) \\
+				\\
+				Then get the gradient at each of the points: \\
+				$y_0$, $y_1 = y_0 + (t_0 + y_0)h$, $y_2 = y_1 + (t_1 + y_1)h$, $y_3 = y_2 + (t_2 + y_2)h$, \ldots \\
+				\\
+				Keep going until the sum of the steps equals the $x$ value at which you want $y$ to be evaluated. \\
+
+			\subsubsection{Linear Equations}
+				$\dv{y}{x} + u(x)y = v(y)$ \\
+				$I\dv{y}{x} + Iu(x)y = Iv(y)$ \\
+				\\
+				Assert that $Iu(x) = \dv{I}{x}$. \\
+				\\
+				$I\dv{y}{x} + \dv{I}{x}y = Iv(y)$ \\
+				$\dv{x}(Iy) = Iv(y)$ \\
+				$\int{\dv{x}(Iy)}\dd{x} = \int{Iv(y)}\dd{x}$ \\
+				$Iy = \int{Iv(y)}\dd{x}$ \\
+				$y = \frac{1}{I} \int{Iv(y)}\dd{x}$ \\
+				\\
+				$Iu(x) = \dv{I}{x}$ \\
+				$\int{u(x)}\dd{x} = \int{\frac{1}{I}}\dd{I}$ \\
+				$\int{u(x)}\dd{x} = \ln{I}$ \\
+				$I = e^{\int{u(x)}\dd{x}}$ \\
+				
+			\subsubsection*{Example}
+				$x^{2}\dv{y}{x} + xy = 1$ \\
+				$\dv{y}{x} + \frac{y}{x} = \frac{1}{x^2}$ \\
+				\\
+				$u(x) = \frac{1}{x}$ \\
+				$v(x) = \frac{1}{x^2}$ \\
+				\\
+				\begin{tabular}{@{\hspace{-3pt}} l @{\hspace{0pt}} l @{\hspace{-3pt}}}
+					$I$	& $\,= e^{\int{u(x)}\dd{x}}$ \\
+						& $\,= e^{\int{\frac{1}{x}}\dd{x}}$ \\
+						& $\,= e^{\ln{x}}$ \\
+						& $\,= x$ \\
+				\end{tabular} \\ \\
+				\\
+				\begin{tabular}{@{\hspace{-3pt}} l @{\hspace{0pt}} l @{\hspace{-3pt}}}
+				$y$	& $\,= \frac{1}{I} \int{Iv(x)}\dd{x}$ \\
+					& $\,= \frac{1}{x} \int{x \frac{1}{x^2}}\dd{x}$ \\
+					& $\,= \frac{1}{x} \int{\frac{1}{x}}\dd{x}$ \\
+					& $\,= \frac{1}{x}(\ln{x} + C)$ \\
+					& $\,= \frac{\ln{x} + C}{x}$ \\
+				\end{tabular}
+		
+		\subsubsection{Separable Equations}
+				$\frac{dy}{dx} = g(x)h(y)$ \\
+				$\frac{1}{h(y)} \,dy = g(x) \,dx$ \quad where $h(y) \ne 0$ \\
+				$\int \frac{1}{h(y)} \,dy = \int g(x) \,dx$ \\
+			
+			\subsubsection*{Example}
+				$\frac{dy}{dx} = \frac{4x - x^3}{4 + y^3}$ \\
+				$(4 + y^3) \,dy = (4x - x^3) \,dx$ \\
+				$\int (4 + y^3) \,dy = \int (4x - x^3) \,dx$ \\
+				$4y + \frac{1}{4}y^4 + C = 2x^2 - \frac{1}{4}x^4 + C$ \\
+				$\frac{1}{4} y^4 + 4y - \frac{1}{4}x^4 - 2x^2 + C = 0$ \\
+				$\frac{1}{4} y^4 + 4y - \frac{1}{4}x^4 - 2x^2 + C = 0$ \\
+				$y^4 + 16y - x^4 - 8x^2 + C = 0$ \\
+	
+			\subsubsection{Homogeneous Equations}
+				$v = \frac{y}{x}$ \\
+				$y = xv$ \\
+				\\
+				$\frac{dy}{dx} = f(\frac{y}{x})$ \\
+				$\frac{d}{dx}(xv) = f(v)$ \\
+				$v - x\frac{dv}{dx} = f(v)$ \\
+				$x\frac{dv}{dx} = v - f(v)$ \quad (now a separable equation) \\
+				$\frac{1}{v - f(v)} \,dv = \frac{1}{x} \,dx$ \\
+				$\int \frac{1}{v - f(v)} \,dv = \int \frac{1}{x} \,dx$ \\
+				
+			\subsubsection*{Example}
+				$\frac{dy}{dx} = \frac{x + y\sin{\frac{y}{x}}}{x\sin{\frac{y}{x}}}$ \\
+				$\frac{d}{dx}(y) = \frac{1 + \frac{y}{x}\sin{\frac{y}{x}}}{\sin{\frac{y}{x}}}$ \\
+				$\frac{d}{dx}(xv) = \frac{1 + v\sin{v}}{\sin{v}}$ \\
+				$v + x\frac{dv}{dx} = \frac{1 + v\sin{v}}{\sin{v}}$ \\
+				$x\frac{dv}{dx} = \frac{1}{\sin{v}}$ \\
+				$\sin{v} \,dv = \frac{1}{x} \,dx$ \\
+				$\int \sin{v} \,dv = \int \frac{1}{x} \,dx$ \\
+				$-\cos{v} + C = \ln{|x|} + C$ \\
+				$-\cos{\frac{y}{x}} + C = \ln{|x|} + C$ \\
+				$y= x\arccos{(C - \ln{|x|})}$ \\
+	
+			\subsubsection{Exact Equations}
+				If there exists $f(x,y)$ such that $\pdv{f}{x} = u$, $\pdv{f}{y} = v$ then \\
+				$u + v\dv{y}{x} = 0$; \\
+				$\pdv{f}{x} + \pdv{f}{y}\dv{y}{x} = 0$; \\
+				$\dv{f}{x} = 0$; \\
+				$f = C$. \\
+				\\
+				There exists $f(x,y)$ such that $\pdv{f}{x} = u$, $\pdv{f}{y} = v$ if and only if \\
+				$\pdv{u}{y} = \pdv{v}{x}$. \\
+	
+			\subsubsection*{Example}
+				$(y\cos{x} + 2xe^y) + (\sin{x} + x^2e^y - 1)\dv{y}{x} = 0$ \\
+				\\
+				\begin{tabular}{@{\hspace{0pt}} l l @{\hspace{0pt}}}
+					$u := y\cos{x} + 2xe^{y}$												& $v := \sin{x} + x^{2}e^{y} - 1$ \\
+					$\pdv{u}{y} = \pdv{}{y}\qty(y\cos{x} + 2xe^{y}) = \cos{x} + 2xe^{y}$	& $\pdv{v}{x} = \pdv{}{x}\qty(\sin{x} + x^2e^y - 1) = \cos{x} + 2xe^y$ \\
+				\end{tabular} \\ \\
+				\\
+				Since $\pdv{u}{y} = \pdv{v}{x}$ then there exists an $f(x,y)$ such that $\pdv{f}{x} = u$ and $\pdv{f}{y} = v$. \\
+				\\
+				Integrate $u$ with respect to $x$ to get $f$: \\
+				$\pdv{f}{x} = u$ \\
+				$\pdv{f}{x} = y\cos{x} + 2xe^y$ \\
+				$\int \pdv{f}{x} \dd{x} = \int \qty(y\cos{x} + 2xe^y) \dd{x}$ \\
+				$f(x,y) = y\sin{x} + x^2e^y + g(y)$ \\
+				\\
+				Differentiate $f$ with respect to $y$ to get $v$: \\
+				$f(x,y) = y\sin{x} + x^2e^y + C(y)$ \\
+				$\pdv{}{y} f(x,y) = \pdv{}{y}\qty(y\sin{x} + x^2e^y + C(y))$ \\
+				$\pdv{f}{y} = \sin{x} + x^2e^y + g'(y)$ \\
+				\\
+				Compare both equations of $v$ to solve for $g$: \\
+				$\pdv{f}{y} = v$ \\
+				$\sin{x} + x^2 e^y + g'(y) = \sin{x} + x^{2}e^{y} - 1$ \\
+				$g'(y) = -1$ \\
+				$g(y) = -y$ \\
+				\\
+				Substitute into original equation: \\
+				$f(x,y) = y\sin{x} + x^2e^y + g(y)$ \\
+				$C = y\sin{x} + x^{2}e^{y} - y$ \\
+	
+			\subsubsection{Exact Equations through Integrating Factors}
+				%general case of $\dv{x}{y} + u(x)y = 0$ TODO change order of equation in 5.1.3 so match kinda general case \\
+				%TODO fix grammar and code style such as using \dv{x}{y} instead of \frac{dx}
+				If a first-order non-separable differential equation is not exact you can force it with an integrating factor $I$. \\
+				\\
+				If there exists $f(x,y)$ such that $\pdv{f}{x} = Iu$, $\pdv{f}{y} = Iv$ then \\
+				$Iu + Iv\dv{y}{x} = 0$; \\
+				$\pdv{f}{x} + \pdv{f}{y}\dv{y}{x} = 0$; \\
+				$\dv{f}{x} = 0$; \\
+				$f = C$. \\
+				\\
+				There exists $f(x,y)$ such that $\pdv{f}{x} = Iu$, $\pdv{f}{y} = Iv$ if and only if \\
+				$\pdv{}{y}\qty(Iu) = \pdv{}{x}\qty(Iv)$; \\
+				$\pdv{I}{y}u + I\pdv{u}{y} = \pdv{I}{x}v + I\pdv{v}{x}$. \\
+				$(\pdv{I}{y}u - \pdv{I}{x}v) + I(\pdv{u}{y} - \pdv{v}{x}) = 0$. \\
+				\\
+				Let $I$ be a function of only $x$ then: \\
+				$(\pdv{I}{y}u - \pdv{I}{x}v) + I(\pdv{u}{y} - \pdv{v}{x}) = 0$ \\
+				$(0u - \pdv{I}{x}v) + I(\pdv{u}{y} - \pdv{v}{x}) = 0$ \\
+				$\pdv{I}{x} = \frac{\pdv{u}{y} - \pdv{v}{x}}{v}I$ \\
+				\\
+				This is a first-order linear separable differential equation which can be solved as per a previous section. \\
+	
+			\subsubsection*{Example}
+				$(3xy + y^2) + (x^2 + xy)\dv{y}{x} = 0$ \\
+				\\
+				\begin{tabular}{@{\hspace{0pt}} l l @{\hspace{0pt}}}
+					$u = 3xy + y^2$			& $v = x^2 + xy$ \\
+					$\pdv{u}{y} = 3x + 2y$	& $\pdv{v}{x} = 2x + y$ \\
+				\end{tabular} \\ \\
+				\\
+				Since $\pdv{u}{y} \ne \pdv{v}{x}$, this is not an exact equation so it must be forced using an integrating factor. \\
+				\\
+				Find an $I$ such that $\pdv{y}(Iu) = \pdv{x}(Iv)$: \\
+				$\pdv{I}{x} = \frac{\pdv{u}{y} - \pdv{v}{x}}{v}I$ \\
+				$\pdv{I}{x} = \frac{(3x + 2y) - (2x + y)}{x^2 + xy}I$ \\
+				$\pdv{I}{x} = \frac{1}{x}I$ \\
+				$\frac{1}{I} \,\partial{I} = \frac{1}{x} \,\partial{x}$ \\
+				$\int \frac{1}{I} \,\partial{I} = \int \frac{1}{x} \,\partial{x}$ \\
+				$\ln{I}= \ln{x}$ \\
+				$I = x$ \\
+				\\
+				Since $\pdv{y}(Iu) = \pdv{x}(Iv)$, there exists $f(x,y)$ such that $\pdv{f}{x} = Iu$ and $\pdv{f}{y} = Iv$. \\
+				\\
+				Partially integrate $Iu$ with respect to $x$ to get $f$: \\
+				$\pdv{f}{x} = Iu$ \\
+				$\pdv{f}{x} = x \cdot (3xy + y^2)$ \\
+				$\int \pdv{f}{x} \,\partial{x} = \int\qty(3x^{2}y + xy^2)\,\partial{x}$ \\
+				$f(x,y) = x^{3}y + \frac{1}{2}x^{2}y^{2} + g(y)$ \\
+				\\
+				Partially differentiate $f$ with respect to $y$ to get $Iv$: \\
+				$f(x,y) = x^{3}y + \frac{1}{2}x^{2}y^{2} + g(y)$ \\
+				$\pdv{f}(y) = \pdv{y}\qty(x^{3}y + \frac{1}{2}x^{2}y^{2} + g(y))$ \\
+				$\pdv{f}{y} = x^{3} + x^{2}y + g'(y)$ \\
+				\\
+				Compare both equations of $Iv$ to solve for $g$: \\
+				$\pdv{f}{y} = Iv$ \\
+				$x^{3} + x^{2}y + g'(y) = x \cdot (x^2 + xy)$ \\
+				$g'(y) = 0$ \\
+				$g(y) = C$ \\
+				\\
+				$f(x,y) = x^{3}y + \frac{1}{2}x^{2}y^{2} + g(y)$ \\
+				$C = x^{3}y + \frac{1}{2}x^{2}y^{2}$ \\
+				
+		\subsection{Second Order Linear}
+		
+			\subsubsection{General Theorems}
+				\textbf{Existence and Uniqueness Theorem} Let $\dv[2]{y}{x} + p(x)\dv{y}{x} + q(x)y = r(x)$ and $y(x_0) = A$ and $\dv{y}{x}(x_0) = B$. \\
+				There exists a unique solution $y(t)$ to the differential equation. \\
+				\\
+				\textbf{Definition}: $y_1(x)$ and $y_2(x)$ are linearly independent if and only if \\
+				$a \, y_1(x) + b \, y_2(x) \ne 0$ \quad for all $a,b \ne 0$. \\
+				\\
+				\textbf{Definition}: The Wronskian of $y_1(x)$ and $y_2(x)$ is defined as \\
+				$W(y_1,y_2) =	\begin{vmatrix}
+									 y_1		& y_2 \\
+									 y_1'	& y_2' \\
+				\end{vmatrix}$. \\
+				\\
+				\textbf{Identity}: Let $y_1(x)$ and $y_2(x)$ be a solution to $\dv[2]{y}{x} + p(x)\dv{y}{x} + q(x)y = 0$. \\
+				$W(y_1,y_2)(x) = Ce^{-\int{p(x)}\dd{x}}$. \\
+				\\
+				\textbf{Abel's Theorem}: Let $y_1(x)$ and $y_2(x)$ be solutions to $\dv[2]{y}{x} + p(x)\dv{y}{x} + q(x)y = 0$. \\
+				Either $W(y_1,y_2)(x) = 0$ for all $x$ or $W(y_1,y_2)(x) \ne 0$ for all $x$. \\
+				\\
+				\textbf{Theorem}: Let $y_1(x)$ and $y_2(x)$ be solutions to $\dv[2]{x}{y} + p(x)\dv{x}{y} + q(x)y = 0$. \\
+				\textbullet \; $W(y_1,y_2)(x) \ne 0$ for all $x$ $\iff$ $y_1(x)$ and $y_2(x)$ are linearly independent; \\
+				\textbullet \; $y_1$ and $y_2$ are linearly independent $\implies$ $a \, y_1(x) + b \, y_2(x)$ is the general solution. \\
+				\\
+				\textbf{Method of Reduction of Order}: Let $y_1(x)$ be a solution to $\dv[2]{y}{x} + p(x)\dv{y}{x} + q(x)y = 0$. Substitute $y = y_1(x)y_2(x)$ $y_2(x)$ into the differential equation and solve for $y_2(x)$. \\
+				\textbullet \; $y_2(x)$ is a solution to the differential equation; \\
+				\textbullet \; $y_1(x)$ and $y_2(x)$ are linearly independent. \\
+
+			\subsubsection{Homogeneous Constant Coefficients}
+				$a\dv[2]{y}{x} + b\dv{y}{x} + cy = 0$ \\
+				\\
+				Let's try $y = e^{rx}$ as a solution. \\
+				\\
+				$a\dv[2]{x}(e^{rx}) + b\dv{x}(e^{rx}) + c(e^{rx}) = 0$ \\
+				$ar^{2}e^{rx} + bre^{rx} + ce^{rx} = 0$ \\
+				$(ar^{2} + br + c)e^{rx} = 0$ \\
+				$ar^{2} + br + c = 0$ \\
+				$r_1 = \frac{-b + \sqrt{b^{2} - 4ac}}{2a}$, $r_2 = \frac{-b - \sqrt{b^{2} - 4ac}}{2a}$ \\
+				\\
+				Check whether $y_1 = e^{r_{1}x}$ and $y_2 = e^{r_{2}x}$ are linearly independent using the Wronskian: \\
+				\textbullet \; if so then $y = C_{1}e^{r_{1}x} + C_{2}e^{r_{2}x}$ is the general solution as per theorem; \\
+				\textbullet \; if not then find a linear complement as per the method of reduction of order. \\
+				\\
+				To save you the hassle of the above process: \\
+				\textbullet \; if $r_1$ and $r_2$ are real and distinct then the general solution is $y = C_{1}e^{r_{1}x} + C_{2}e^{r_{2}x}$; \\
+				\textbullet \; if $r_1$ and $r_2$ are real and the same $r$ then the general solution is $y = C_{1}e^{r_x} + C_{2}xe^{r_x}$; \\
+				\textbullet \; if $r_1$ and $r_2$ are complex conjugates $a \pm bi$ then the general solution is $y = e^{ax}(C_{1}\cos{bx} + C_{2}\sin{bx})$. \\
+			
+			\subsubsection{Homogeneous General Coefficients (Euler equations)}
+				Euler equations are in the form $ax^2\dv[2]{y}{x} + bx\dv{y}{x} + cy$ = 0. Let $t = \ln{x}$ where $x>0$. The Euler equation with respect to $x$ can then be manipulated into a homogeneous differential equation with constant coefficients with respect to $t$. \\
+				\\
+				$\dv{y}{x} = \ldots = \dv{y}{t} \frac{1}{x}$. \\
+				$\dv[2]{y}{x} = \ldots = \dv[2]{y}{t} \frac{1}{x^2} - \dv{y}{t} \frac{1}{x^2}$. \\
+				\\
+				$ax^2\dv[2]{y}{x} + bx\dv{y}{x} + cy = 0$; \\
+				$ax^2(\dv[2]{y}{t} \frac{1}{x^2} - \dv{y}{t} \frac{1}{x^2}) + bx(\dv{y}{t} \frac{1}{x}) + cy = 0$; \\
+				$a\dv[2]{y}{t} + (b - a)\dv{y}{t} + cy = 0$. \\
+				\\
+				\textbf{Example}: Solve $x^2\dv[2]{y}{x} - 3x\dv{y}{x} + 7y = 0$. Let $t = \ln{x}$. \\
+				\\
+				$\dv[2]{y}{t} - 4\dv{y}{t} + 7y = 0$; \\
+				$\dv[2]{t}\qty(e^{rt}) - 4\dv{t}\qty(e^{rt}) + 7(e^{rt}) = 0$; \\
+				$r^2e^{rt} - 4re^{rt} + 7e^{rt} = 0$; \\
+				$(r^2 - 4r + 7)e^{rt} = 0$; \\
+				$r = 2 \pm \sqrt{3}i$. \\
+				\\
+				\begin{tabular}{@{\hspace{0pt}} l @{\hspace{0pt}} l @{\hspace{0pt}}}
+					$y$	& $\,= e^{2t}(C_1\cos{\sqrt{3}t} + C_2\sin{\sqrt{3}t})$ \\
+						& $\,= x^2(C_1\cos{\sqrt{3}\ln{x}} + C_2\sin{\sqrt{3}\ln{x}})$. \\
+				\end{tabular} \\ \\
+
+			\subsubsection{Homogeneous General Coefficients (series solutions) (INCOMPLETE TODO)}
+				$\dv[2]{y}{x} + p(x)\dv{y}{x} + q(x)y = 0$ \\
+				\\
+				\textbf{Definition}: A function $f(x)$ is analytic at $x = a$ if its Taylor series exists and converges to $f(x)$ for some $x \ne a$. \\
+				\textbf{Definition}: In a homogeneous linear second order differential equation, a point $x = a$ is ordinary if both $p(x)$ and $q(x)$ are analytic at $x = a$ and singular otherwise. \\
+				\textbf{Definition}: In a homogeneous linear second order differential equation, a singular point $x = a$ is regular if $xp(x)$ and $x^2q(x)$ are analytic at $x = a$ and irregular otherwise. \\
+				\\
+				\textbf{Theorem}: In a homogeneous linear second order differential equation, if $x = a$ is an ordinary point then the general solution to the equation is $y(x) = \sum_{n=0}^\infty{a_n(x - a)^n} = a_0y_1(x) + a_1y_2(x)$. \\
+				\textbf{Theorem}: In a homogeneous linear second order differential equation, if $x = 0$ is a regular singular point then the general solution to the equation is $y(x) = x^r\sum_{n=0}^\infty{a_nx^n} = \sum_{n=0}^\infty{a_nx^{n+r}} = a_0y_1(x) + a_1y_2(x)$. \\
+				\\
+				\textbf{Identity Principle}: If $\sum_{n=0}^\infty{a_nx^n} = \sum_{n=0}^\infty{b_nx^n}$, then $a_n = b_n$ for all $n$. \\
+				\\
+				\textbf{Method of Frobenius}: Solving ODEs at singular points. In a homogeneous linear second order differential equation, a singular point $x = a$ can be transformed by the coordinate change $t = x - a$ into another singular point $t = 0$: \\
+				\\
+				$\dv{y}{x} = \dv{y}{t} \dv{t}{x} = \dv{y}{t} \dv{x}(x-a) = \dv{y}{t}$ \\
+				$\dv[2]{y}{x} = \dv{x}\dv{y}{x} = \dv{x}\dv{y}{t} = \dv{t}\dv{y}{x} = \dv{t}\dv{y}{t} = \dv[2]{y}{t}$ \\
+				\\
+				$\dv[2]{y}{x} + p(x)\dv{y}{x} + q(x)y = 0$ $\implies$ $\dv[2]{y}{t} + p(t + b)\dv{y}{t} + q(t + b)$ \\
+				\\
+				Since $x = a$ is a regular singular point, $xp(x)$ and $x^2q(x)$ are analytic at $x=0$ so \\
+				$xp(x) = \sum_{n=0}^\infty{p_nx^n}$ and $x^2q(x) = \sum_{n=0}^\infty{q_nx^n}$; \\
+				$p(x) = \sum_{n=0}^\infty{p_nx^{n-1}}$ and $q(x) = \sum_{n=0}^\infty{q_nx^{n-2}}$. \\
+				\\
+				Substitute into the ODE, expand sums, collect power of $x$ terms, use the identity principle: \\
+				$\dv[2]{y}{x} + p(x)\dv{y}{x} + q(x)y = 0$ \\
+				$\dv[2]{x}(\sum_{n=0}^\infty{a_nx^{n+r}}) + (\sum_{n=0}^\infty{p_nx^{n-1}})\dv{x}(\sum_{n=0}^\infty{a_nx^{n+r}}) + (\sum_{n=0}^\infty{q_nx^{n-2}})(\sum_{n=0}^\infty{a_nx^{n+r}}) = 0$; \\
+				\ldots \\
+				$a_0(r(r-1) + p_0r + q_0)x^{r-2} + (\ldots)x^{r-1} + (\ldots)x^{r} + \ldots  = 0$; \\
+				$a_0(r(r-1) + p_0r + q_0) = 0$ (by the identity principle); \\
+				$r^2 + (p_0 - 1)r + q_0 = 0$; \\
+				$r_1 = \ldots$ and $r_2 = \ldots$. \\
+				\\
+				$y_1(x) = x^{r_1}\sum_{n=0}^\infty{a_nx^n}$ \\
+				$y_2(x) =	\begin{cases}
+								y_1(x)\ln{x} + x^{r_1}\sum_{n=0}^\infty{a_nx_n}		& \text{if}\;\; r_1 = r_2 \\
+								Dy_1(x)\ln{x} + x^{r_2}\sum_{n=0}^\infty{a_nx_n}	& \text{if}\;\; r_1 > r_2 \\
+								x^{r_2}\sum_{n=0}^\infty{a_nx_n}					& \text{if}\;\; r_1 < r_2 \\
+							\end{cases}$
+
+			\subsubsection{Heterogeneous Constant Coefficients (method of undetermined coefficients)}
+				The method of undetermined coefficients works for heterogeneous constant coefficient linear differential equations where $f(x)$ is a polynomial, trigonometric, exponential or any sum and product of those functions. \\
+				\\
+				Let $a\dv[2]{y}{x} + b\dv{y}{x} + cy = 0$ be the homogeneous equation and $y_c = C_1y_1 + C_2y_2$ be the general solution. \\
+				Let $a\dv[2]{y}{x} + b\dv{y}{x} + cy = f(x)$ be the heterogeneous equation and $y_f$ be the particular solution. Then $y = y_c + y_f$ is the general solution. \\
+				\\
+				Let $a\dv[2]{y}{x} + b\dv{y}{x} + cy = Me^{rx}$ be the heterogeneous equation. Then \\
+				\textbullet \; $y_f = Ce^{rx}$ is the particular solution if linearly independent; \\
+				\textbullet \; $y_f = Cxe^{rx}$ is the particular solution if not linearly independent with $y_1$; \\
+				\textbullet \; $y_f = Cx^{2}e^{rx}$ is the particular solution if not linearly independent with $y_1$ nor $y_2$. \\
+				\\
+				Let $a\dv[2]{y}{x} + b\dv{y}{x} + cy = M\cos{kx} + N\sin{kx}$ be the heterogeneous equation. Then \\
+				\textbullet \; $y_f = C_1\cos{kx} + C_2\sin{kx}$ is the particular solution if not linearly independent with $y_1$; \\
+				\textbullet \; $y_f = x(C_1\cos{kx} + C_2\sin{kx})$ is the particular solution if not linearly independent with $y_1$. \\
+				\\
+				Let $a\dv[2]{y}{x} + b\dv{y}{x} + cy = a_{n}x^{n} + \ldots a_{1}x + a_{0}$ be the heterogeneous equation. Then \\
+				\textbullet \; $y_f = b_{n}x^{n} + \ldots b_{1}x + b_{0}$ is the particular solution if $r_1 = 0$ nor $r_2 = 0$; \\
+				\textbullet \; $y_f = x(b_{n}x^{n} + \ldots b_{1}x + b_{0})$ is the particular solution if $r_1 = 0$ xor $r_2 = 0$; \\
+				\textbullet \; $y_f = x^{2}(b_{n}x^{n} + \ldots b_{1}x + b_{0})$ is the particular solution if $r_1 = 0$ and $r_2 = 0$. \\
+				\\
+				Let $a\dv[2]{y}{x} + b\dv{y}{x} + cy = f(x) + g(x)$ be the heterogeneous equation. Then $y_{f} + y_{g}$ is the particular solution. \\
+				Let $a\dv[2]{y}{x} + b\dv{y}{x} + cy = f(x) \cdot g(x)$ be the heterogeneous equation. Then $y_{f} \cdot y_{g}$ is the particular solution. \\
+				
+			\subsubsection{Heterogeneous General Coefficients (method of variation of parameters)}
+				The method of variation of parameters works for any heterogeneous linear differential equation. \\
+				\\
+				Let $a(x)y'' + b(x)y' + c(x)y = 0$ be the homogeneous equation and $y_c = C_{1}y_{2} + C_{2}y_{2}$ be the solution. \\
+				Let $a(x)y'' + b(x)y' + c(x)y = f(x)$ be the heterogeneous equation. Assert $y_f = u(x)y_{1} + v(x)y_{2}$ to be the particular solution. \\
+				\\
+				Substitute $y_f$ into the heterogeneous equation: \\
+				$a(x)y'' + b(x)y' + c(x)y = 0$; \\
+				$a(x)(u(x)y_{1} + v(x)y_{2})'' + b(x)(u(x)y_{1} + v(x)y_{2})' + c(x)(u(x)y_{1} + v(x)y_{2}) = 0$; \\
+				\ldots \\
+				$u'(x){y_1}' + v'(x){y_2}' = \frac{f(x)}{a(x)}$. \\
+				\\
+				%TODO u'(x)y_1 + v'(x)y_2 = 0 equation is simply assumed in the textbook for some reason may need to look into that its also used in the above bit to get the second equation
+				Solve for $u(x)$ and $v(x)$ using the equations: \\ %idk where assumption 25 comes from in the lecture notes
+				$u'(x)y_1 + v'(x)y_2 = 0$ and $u'(x){y_1}' + v'(x){y_2}' = \frac{f(x)}{a(x)}$; \\
+				\ldots \\
+				%TODO make wronskian W text instead of italic maths
+				\begin{tabular}{@{\hspace{0pt}} l @{\hspace{0pt}} l @{\hspace{0pt}} l @{\hspace{0pt}}}
+					$u'(x) = -\frac{y_{2}f(x)}{a(x)(y_1y_2' - y_2y_1')}$				& \, and $v'(x) = \frac{y_{1}f(x)}{a(x)\text{W}(y_1y_2' - y_2y_1')}$		& ; \\
+					$u(x) = -\int{\frac{y_{2}f(x)}{a(x)\text{W}(y_{1},y_{2})}}\dd{x}$	& \, and $v(x) = \int{\frac{y_{1}f(x)}{a(x)\text{W}(y_{1},y_{2})}}\dd{x}$	& . \\
+				\end{tabular} \\ \\
+				\\
+				Therefore $y_f = -y_1\int{\frac{y_{2}f(x)}{a\text{W}(y_{1},y_{2})}}\dd{x} + y_2\int{\frac{y_{1}f(x)}{a\text{W}(y_{1},y_{2})}}\dd{x}$ is the particular solution. \\
+				%TODO consider refactoring: adding more section levels and slip in a notice in the heterogenous section about the y = y_c + y_p
+			
+		\subsection{Second Order Non-linear}
+			
+			\subsubsection{Reducible}
+				Second order differential equations have the general form $F(\dv[2]{y}{x}, \dv{y}{x}, y, x)$. But those in the form $F(\dv[2]{y}{x}, \dv{y}{x}, x)$ can be reduced. Substitute in $u = \dv{y}{x}$ and it becomes a first order differential equation in $u$ which is easier to solve. \\
+				\\
+				\textbf{Example}: Solve for $y$ given $\dv[2]{y}{x} = x\dv{y}{x}^2$, $y(0) = 1$, $\dv{y}{x}\qty(0) = -2$. Let $u(x) = \dv{y}{x}$. \\
+				\\
+				\begin{tabular}{@{\hspace{0pt}} l @{\hspace{36pt}} l @{\hspace{0pt}}}
+					$\dv[2]{y}{x} = x \dv{y}{x}^2$			& $-2 = \frac{2}{C - (0)^2}$ \\
+					$\dv{u}{x} = x u^2$						& $C = -1$\\
+					$\int{u^{-2}}\dd{u} = \int{x}\dd{x}$ \\
+					$-u^{-1} = \frac{1}{2}x^2 + C$ \\
+					$u = \frac{2}{C - x^2}$ \\
+					$\dv{y}{x} = \frac{2}{C - x^2}$			& $\dv{y}{x} = -\frac{2}{1 + x^2}$ \\
+				\end{tabular} \\ \\
+				\\
+				\begin{tabular}{@{\hspace{0pt}} l @{\hspace{36pt}} l @{\hspace{0pt}}}
+					$\dv{y}{x} = -\frac{2}{1 + x^2}$							& $1 = -2\arctan{0} + C$ \\
+					$\int{\dv{y}{x}}\dd{x} = -2\int{\frac{1}{1 + x^2}}\dd{x}$	& $C = 1$ \\
+					$y = -2\arctan{x} + C$ \\
+				\end{tabular} \\ \\
+				\\
+				$y = 1 - 2\arctan{x}$ \\
+				\\
+				\textbf{Example}: Solve for $y$ given $y\dv[2]{y}{x} = \dv{y}{x}^2$. Let $u(y) = \dv{y}{x}$. \\
+				\\
+				\begin{tabular}{@{\hspace{0pt}} l @{\hspace{36pt}} l @{\hspace{0pt}}}
+					$y\dv[2]{y}{x} = \dv{y}{x}^2$				& $\dv{y}{x} = Cy$ \\
+					$y\dv{u}{x} = u^2$							& $\int{y^{-1}}\dd{y} = \int{C}\dd{x}$ \\
+					$y\dv{u}{y}\dv{y}{x} = u^2$					& $\ln{y} = C_1x + C_2$ \\
+					$y\dv{u}{y}u = u^2$							& $y = C_2e^{C_1x}$ \\
+					$\int{u^{-1}}\dd{u} = \int{y^{-1}}\dd{y}$ \\
+					$\ln{u} = \ln{y} + C$ \\
+					$u = Cy$ \\
+					$\dv{y}{x} = Cy$ \\
+				\end{tabular} \\ \\
+
+			\subsubsection{Other}
+
+		% subsection{Second Order}
+		% 	\subsubsection{Linear}
+		% 		\subsubsubsection{Homogeneous}
+		% 			\subsubsubsubsection{Constant Coefficients}
+		% 			\subsubsubsubsection{General Coefficients}
+		% 				\subsubsubsubsubsection{Equidimensional (euler equation)}
+		% 				\subsubsubsubsubsection{Series Solutions}
+		% 		\subsubsubsection{Heterogeneous}
+		% 			\subsubsubsubsection{Constant Coefficients}
+		% 				\subsubsubsubsubsection{Polynomial}
+		% 				\subsubsubsubsubsection{Exponential}
+		% 				\subsubsubsubsubsection{Trigonometric}
+		% 				\subsubsubsubsubsection{Linear Combinations of Polynomial, Exponential, Trigonometric}
+		% 				\subsubsubsubsubsection{General (method of variation of parameters)}
+		% 			\subsubsubsubsection{General Coefficients (method of variation of parameters)}
+		% 	\subsubsection{Non-linear}
+		% 		\subsubsubsection{Reducible (method of reduction)}
+		% 		\subsubsection{Others}
+	
+\end{document}
